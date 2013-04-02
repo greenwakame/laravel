@@ -119,6 +119,15 @@ Route::get('/', function()
     return View::make('home.index');
 });
 
-Route::filter('pattern: hello/*' , array('name' => 'filter' , function(){ echo 'Hello World! <br>'; }));
+//Route::filter('pattern: hello/*' , array('name' => 'filter' , function(){ echo 'Hello World! <br>'; }));
 
 Route::controller(array('hello','home','login'));
+
+/*Route::get('hello',function()
+{
+    //$data = DB::query('select * from collections');
+    //Fluentクエリービルダー使用
+    $data = DB::table('collections')->get();
+    echo var_dump($data);
+});
+*/

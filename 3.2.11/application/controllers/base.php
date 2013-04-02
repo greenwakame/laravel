@@ -9,6 +9,9 @@ class Base_Controller extends Controller {
 	 * @param  array     $parameters
 	 * @return Response
 	 */
+
+	//レイアウト設定
+	public $layout = 'layouts.template';
 	public function __call($method, $parameters)
 	{
 		return Response::error('404');
