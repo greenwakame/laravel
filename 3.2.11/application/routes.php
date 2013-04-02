@@ -34,7 +34,8 @@
 
 Route::get('/', function()
 {
-	return View::make('home.index');
+	//return View::make('home.index');
+    echo 'Hello World!';
 });
 
 /*
@@ -109,3 +110,15 @@ Route::filter('auth', function()
 {
 	if (Auth::guest()) return Redirect::to('login');
 });
+
+// テスト運用のため全コントローラーを読み込み
+Route::controller(Controller::detect());
+
+Route::get('/', function()
+{
+    return View::make('home.index');
+});
+
+Route::filter('pattern: hello/*' , array('name' => 'filter' , function(){ echo 'Hello World! <br>'; }));
+
+Route::controller(array('hello','home','login'));
