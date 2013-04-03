@@ -8,13 +8,19 @@ class Hello_Controller extends Base_Controller
         //$this->filter('before' , 'auth');
         //index , listアクションのみ適用
         //$this->filter('before' , 'auth')->only(array('index' , 'list'));
+
+        //アセットを登録する
+        Asset::add('bootstrap-css','bootstrap/css/bootstrap.min.css');
+        Asset::add('resonsive','bootstrap/css/bootstrap-responsive.min.css');
+        Asset::add('jquery','js/jquery-1.9.1.min.js');
+        Asset::add('bootstrap-js','bootstrap/js/bootstrap.min.js','jquery');
     }
 
     public function action_index()
     {
         //contentに渡すデータの作成
         $data = array(
-            'name'          => 'inaka',
+            'name'          => 'testuser',
             'address'       => '埼玉県',
             'email'         => 'inaka@inaka.jp'
         );
@@ -32,13 +38,12 @@ class Hello_Controller extends Base_Controller
 
     public function action_profile()
     {
-        //アセットを登録する
-        Asset::add('bootstrap-css','bootstrap/css/bootstrap.min.css');
-        Asset::add('resonsive','bootstrap/css/bootstrap-responsive.min.css');
-        Asset::add('jquery','js/jquery-1.9.1.min.js');
-        Asset::add('bootstrap-js','bootstrap/js/bootstrap.min.js','jquery');
-
         return View::make('hello/profile');
+    }
+
+    public function action_form()
+    {
+        return View::make('hello.form');
     }
 /*    public function action_index()
     {
