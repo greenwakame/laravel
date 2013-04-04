@@ -90,4 +90,11 @@ class Collection_Controller extends Base_Controller
 
         return View::make('collection/edit',$data);
     }
+
+    public function action_detail($id)
+    {
+        $data['collection'] = DB::table('collections')->find($id);
+
+        return View::make('collection/detail',$data);
+    }
 }

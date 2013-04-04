@@ -20,8 +20,11 @@
  <td>{{ $row->created }}</td>
  <td>{{ $row->modified }}</td>
  <td>{{ $row->save_space }}</td>
- <td>{{ HTML::link_to_action('collection@edit','更新',array($row->id)) }}</td>
- </tr>
+ <td><i class="icon-pencil"></i>
+ {{ HTML::link_to_action('collection@edit','更新',array($row->id)) }}
+ <i class="icon-hand-right"></i>
+ {{ HTML::link_to_action('collection@detail','詳細',array($row->id)) }}</td>
+ </tr>
 @endforeach
 </table>
 {{-- 全ページリンクの表示 --}}
