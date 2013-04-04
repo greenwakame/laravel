@@ -97,4 +97,18 @@ class Collection_Controller extends Base_Controller
 
         return View::make('collection/detail',$data);
     }
+
+    public function action_delete($id)
+    {
+        if(Input::get('id') == $id)
+        {
+            $delete = DB::table('collections')->where('id' , '=' , $id)->delete();
+
+            return Redirect::to('collection/index');
+        }
+
+        $data['collection'] = DB::table('collections')->find($id);
+
+        return View::make('collection/delete',$data);
+    }
 }
