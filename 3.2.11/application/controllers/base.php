@@ -11,7 +11,7 @@ class Base_Controller extends Controller {
 	 */
 
 	//レイアウト設定
-	public $layout = 'layouts.template';
+	public $layout = 'layouts.master';
 	public function __call($method, $parameters)
 	{
 		return Response::error('404');

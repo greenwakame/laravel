@@ -1,8 +1,4 @@
 @layout('layouts.master')
-@section('navigation')
-<li>{{ HTML::link('collection/index','トップページ') }}</li>
-<li>{{ HTML::link('collection/create','新規作成') }}</li>
-@endsection
 @section('content')
 <table class="table table-striped table-bordered">
  <tr>

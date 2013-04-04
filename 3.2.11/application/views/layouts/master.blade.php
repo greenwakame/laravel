@@ -16,8 +16,9 @@
 <a class="brand" href="#">Laravel</a>
 <ul class="nav">
  @section('navigation')
- <li>{{ HTML::link('hello/index','トップページ') }}</li>
- <li>{{ HTML::link('hello/list','一覧') }}</li>
+ <li>{{ HTML::link('collection/index','トップページ') }}</li>
+ <li>{{ HTML::link('collection/create','新規作成') }}</li>
+ <li>{{ HTML::link('mail/index','お問い合わせ') }}</li>
  @yield_section
 </ul>
 </div>

@@ -82,7 +82,7 @@ class Collection_Controller extends Base_Controller
             {
                 $update = DB::table('collections')->where('id','=',Input::get('id'))->update($input);
 
-                return Redirect::to('collections/index');
+                return Redirect::to('collection/index');
             }
         }
 

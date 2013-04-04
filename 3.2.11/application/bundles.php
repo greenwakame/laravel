@@ -38,4 +38,5 @@ return array(
 	'docs' => array('handles' => 'docs'),
     'admin' => array('handles' => 'admin'),
 
+    'swiftmailer' => array('auto' => true),
 );
