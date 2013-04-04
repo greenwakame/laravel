@@ -21,7 +21,35 @@ class Collection_Controller extends Base_Controller
 
     public function action_create()
     {
+        //データが送信されてきたら
+        if($data = Input::all())
+        {
+            //バリデーションのルール定義
+            $rules = array(
+                'title'         => 'required|max:100',
+                'col_code'      => 'required|alpha_dash',
+                'save_space'    => 'required',
+            );
+            //バリデーションをインスタンス化
+            $val = Validator::make($data,$rules);
+            //バリデーションチェック
+            if($val->fails())
+            {
+                //セッションに入力値を退避する
+                Input::flash();
+                return Redirect::to('collection/create')->with_errors($val);
+            }
+            else
+            {
+                //データ新規作成
+                $create = DB::table('collections')->insert($data);
+                //トップページへリダイレクト
+                return Redirect::to('collection/index');
+            }
+        }
+
         //titleが送信されたら
+        /*
         if(Input::get('title'))
         {
             $data['title']      = Input::get('title');
@@ -30,6 +58,36 @@ class Collection_Controller extends Base_Controller
             $data['save_space'] = Input::get('save_space');
             $create = DB::table('collections')->insert($data);
         }
+        */
         return View::make('collection.create');
+    }
+
+    public function action_edit($id = null)
+    {
+        if($input = Input::all())
+        {
+            $rules = array(
+                'title'         => 'required|max:100',
+                'col_code'      => 'required|alpha_dash',
+                'save_space'    => 'required',
+            );
+
+            $val = Validator::make($input,$rules);
+
+            if($val->fails())
+            {
+                return Redirect::to(URL::current())->with_errors($val);
+            }
+            else
+            {
+                $update = DB::table('collections')->where('id','=',Input::get('id'))->update($input);
+
+                return Redirect::to('collections/index');
+            }
+        }
+
+        $data['collections'] = DB::table('collections')->find($id);
+
+        return View::make('collection/edit',$data);
     }
 }
