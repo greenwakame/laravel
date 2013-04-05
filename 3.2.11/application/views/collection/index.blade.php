@@ -13,8 +13,8 @@
  <tr>
  <td>{{ $row->id }}</td>
  <td>{{ $row->title }}</td>
- <td>{{ $row->created }}</td>
- <td>{{ $row->modified }}</td>
+ <td>{{ $row->created_at }}</td>
+ <td>{{ $row->updated_at }}</td>
  <td>{{ $row->save_space }}</td>
  <td><i class="icon-pencil"></i>
  {{ HTML::link_to_action('collection@edit','更新',array($row->id)) }}

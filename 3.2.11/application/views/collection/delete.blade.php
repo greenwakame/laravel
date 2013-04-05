@@ -14,28 +14,28 @@
 <table class="table">
  <tr>
  <th>id</th>
- <td>{{ $collection->id }}</td>
+ <td>{{ $collections->id }}</td>
  </tr>
  <tr>
  <th>タイトル</th>
- <td>{{ $collection->title }}</td>
+ <td>{{ $collections->title }}</td>
  </tr>
  <tr>
  <th>作成日</th>
- <td>{{ $collection->created }}</td>
+ <td>{{ $collections->created }}</td>
  </tr>
  <tr>
  <th>更新日</th>
- <td>{{ $collection->modified }}</td>
+ <td>{{ $collections->modified }}</td>
  </tr>
  <tr>
  <th>保管場所</th>
- <td>{{ $collection->save_space }}</td>
+ <td>{{ $collections->save_space }}</td>
  </tr>
  <tr>
 </table>
 {{ Form::open() }}
-{{ Form::hidden('id',$collection->id) }}
+{{ Form::hidden('id',$collections->id) }}
 {{ Form::submit('データ削除',array('class'=>'btn btn-danger')) }}
 {{ Form::close() }}
 </div>

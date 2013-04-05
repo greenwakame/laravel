@@ -14,8 +14,11 @@ class Collection_Controller extends Base_Controller
     public function action_index()
     {
         //データを取得
-        $data['collections'] = DB::table('collections')->order_by('created','desc')->paginate(10);
-
+        //$data['collections'] = DB::table('collections')->order_by('created','desc')->paginate(10);
+        //EloquentORMで取得
+        //$data['collections'] = Collection::all();
+        //EloquentORMでページャー用
+        $data['collections'] = Collection::order_by('created','desc')->paginate(10);
         return View::make('collection/index',$data);
     }
 
@@ -42,7 +45,9 @@ class Collection_Controller extends Base_Controller
             else
             {
                 //データ新規作成
-                $create = DB::table('collections')->insert($data);
+                //$create = DB::table('collections')->insert($data);
+                //EloquentORMでデータの新規作成
+                $create = Collection::create($data);
                 //トップページへリダイレクト
                 return Redirect::to('collection/index');
             }
@@ -80,20 +85,30 @@ class Collection_Controller extends Base_Controller
             }
             else
             {
-                $update = DB::table('collections')->where('id','=',Input::get('id'))->update($input);
+                //$update = DB::table('collections')->where('id','=',Input::get('id'))->update($input);
+                //EloquentORMで更新
+                $update = Collection::find(Input::get('id'));
+                $update->title = Input::get('title');
+                $update->col_code = Input::get('col_code');
+                $update->save_space = Input::get('save_space');
+                $update->save();
 
                 return Redirect::to('collection/index');
             }
         }
 
-        $data['collections'] = DB::table('collections')->find($id);
+        //$data['collections'] = DB::table('collections')->find($id);
+        //EloquentORMで取得
+        $data['collections'] = Collection::find($id);
 
         return View::make('collection/edit',$data);
     }
 
     public function action_detail($id)
     {
-        $data['collection'] = DB::table('collections')->find($id);
+        //$data['collections'] = DB::table('collections')->find($id);
+        //EloquentORMで取得
+        $data['collections'] = Collection::find($id);
 
         return View::make('collection/detail',$data);
     }
@@ -102,12 +117,16 @@ class Collection_Controller extends Base_Controller
     {
         if(Input::get('id') == $id)
         {
-            $delete = DB::table('collections')->where('id' , '=' , $id)->delete();
+            //$delete = DB::table('collections')->where('id' , '=' , $id)->delete();
+            //Eloquentで削除
+            $delete = Collection::find($id)->delete();
 
             return Redirect::to('collection/index');
         }
 
-        $data['collection'] = DB::table('collections')->find($id);
+        //$data['collection'] = DB::table('collections')->find($id);
+        //EloquentORMで取得
+        $data['collections'] = Collection::find($id);
 
         return View::make('collection/delete',$data);
     }
